@@ -1,7 +1,7 @@
 ARG BASE_CONTAINER=condaforge/mambaforge:latest
 FROM $BASE_CONTAINER
 
-ARG python=3.8
+ARG python=3.10
 ARG release
 
 SHELL ["/bin/bash", "-c"]
@@ -25,7 +25,9 @@ RUN mamba install -y \
     streamz \
     xarray \
     s3fs \
-    zarr \
+    pytables \
+    zarr==2.13.2 \
+    h5py \
     && mamba clean -tipy \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
     && find /opt/conda/ -type f,l -name '*.pyc' -delete \
